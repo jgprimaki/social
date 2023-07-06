@@ -1,0 +1,93 @@
+query load($filter: String) {
+  meetings(filter: $filter) {
+    id
+    name
+    start_date
+    end_date
+    start_time
+    end_time
+    description
+    color
+    room
+    user {
+      id
+    }
+    members {
+      id
+      name_complete
+    }
+  }
+}
+
+mutation create(
+  $name: String!
+  $start_date: String!
+  $start_time: String!
+  $end_time: String!
+  $color: String!
+  $room: Int!
+  $user: String!
+  $end_date: String
+  $description: String
+  $active: Boolean
+  $members: [String!]
+) {
+  createMeeting(
+    input: {
+      name: $name
+      start_date: $start_date
+      end_date: $end_date
+      start_time: $start_time
+      end_time: $end_time
+      description: $description
+      color: $color
+      room: $room
+      user: $user
+      active: $active
+      members: $members
+    }
+  ) {
+    id
+  }
+}
+
+mutation cancel($id: String) {
+  cancelMeeting(id: $id) {
+    id,
+    name
+  }
+}
+
+subscription meetingCreated {
+  meetingCreated {
+    id
+    name
+    start_date
+    start_time
+    end_time
+    color
+    room
+    user {
+      id
+    }
+    members {
+      id
+    }
+    end_date
+    description
+  }
+}
+
+subscription meetingCanceled {
+  meetingCanceled {
+    id
+    name
+    start_date
+    start_time
+    end_time
+    room
+    members {
+      id
+    }
+  }
+}

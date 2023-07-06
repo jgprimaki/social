@@ -1,0 +1,27 @@
+::-webkit-scrollbar {
+  width: 0;
+}
+
+::-webkit-scrollbar-track {
+  border-radius: 0;
+  box-shadow: inset 0 0 5px #6c757d;
+  background-color: #edf1f5;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background: rgba($color: #6c757d, $alpha: 0.5);
+
+  &:hover {
+    background: #4f5467;
+  }
+}
+
+html {
+  overflow-y: auto !important;
+
+  a {
+    text-decoration: none;
+    font-weight: 600;
+  }
+}

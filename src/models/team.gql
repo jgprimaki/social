@@ -1,0 +1,6 @@
+query load {
+  teams {
+    id
+    name
+  }
+}

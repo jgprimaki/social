@@ -1,0 +1,100 @@
+query findByUUID($keycloak_uuid: String!) {
+  user(keycloak_uuid: $keycloak_uuid) {
+    id
+    keycloak_uuid
+    name_complete
+    email
+    birthday
+    theme_dark
+    phone
+    studying
+    pis
+    teams {
+      id
+      name
+    }
+    cake_teams {
+      id
+      name
+    }
+  }
+}
+
+query getUsersBirthday($filter: String) {
+  users(filter: $filter) {
+    id
+    keycloak_uuid
+    name_complete
+    birthday
+  }
+}
+
+query getUsersPhones {
+  users {
+    id
+    keycloak_uuid
+    name_complete
+    phone
+  }
+}
+
+query getMembers {
+  users {
+    id
+    name_complete
+  }
+}
+
+mutation createUser(
+  $name_complete: String!
+  $email: String!
+  $birthday: String!
+  $keycloak_uuid: String!
+  $teams: [String!]!
+  $phone: String!
+  $cake_teams: [String!]
+  $pis: String
+  $studying: Boolean
+) {
+  createUser(
+    input: {
+      name_complete: $name_complete
+      email: $email
+      birthday: $birthday
+      pis: $pis
+      keycloak_uuid: $keycloak_uuid
+      teams: $teams
+      cake_teams: $cake_teams
+      phone: $phone
+      studying: $studying
+    }
+  ) {
+    id
+    keycloak_uuid
+    name_complete
+    email
+    birthday
+    theme_dark
+    pis
+    phone
+    studying
+    teams {
+      id
+      name
+    }
+    cake_teams {
+      id
+      name
+    }
+  }
+}
+
+mutation updateThemeDark($keycloak_uuid: String!, $theme_dark: Boolean!) {
+  updateTheme(
+    input: { keycloak_uuid: $keycloak_uuid, theme_dark: $theme_dark }
+  ) {
+    id
+    keycloak_uuid
+    theme_dark
+  }
+}

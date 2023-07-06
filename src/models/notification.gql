@@ -1,0 +1,27 @@
+query load($filter: String, $sort: String) {
+  notifications(filter: $filter, sort: $sort) {
+    id
+    description
+    active
+    type
+    color
+    icon
+  }
+}
+
+mutation deactivateNotification($id: ID!) {
+  deactivateNotification(id: $id) {
+    id
+  }
+}
+
+subscription notificationCreated($user: ID) {
+  notificationCreated(user: $user) {
+    id
+    description
+    active
+    type
+    color
+    icon
+  }
+}

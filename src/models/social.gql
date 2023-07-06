@@ -1,0 +1,5 @@
+query social($page: Int!) {
+  social(sort: "period:desc", limit: 10, page: $page) {
+    id
+  }
+}
